@@ -11,6 +11,7 @@ const Portfolio = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState('');
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const { scrollYProgress } = useScroll();
 
   const scaleX = useSpring(scrollYProgress, {
@@ -20,11 +21,29 @@ const Portfolio = () => {
   });
 
   useEffect(() => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+
+    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleInputChange = (e) => {
@@ -63,8 +82,6 @@ const Portfolio = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
 
-
-
   const projects = [
     {
       title: "ResumeRefine",
@@ -94,6 +111,33 @@ const Portfolio = () => {
       color: "from-orange-500 to-red-500"
     }
   ];
+
+  const StarBackground = () => {
+    return dimensions.width > 0 ? (
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white rounded-full"
+            initial={{
+              x: Math.random() * dimensions.width,
+              y: Math.random() * dimensions.height,
+              opacity: Math.random(),
+            }}
+            animate={{
+              y: [null, -1000],
+              opacity: [null, 0],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </div>
+    ) : null;
+  };
 
   const container = {
     hidden: { opacity: 0 },
@@ -211,28 +255,7 @@ const Portfolio = () => {
             ease: "easeInOut",
           }}
         />
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                opacity: Math.random(),
-              }}
-              animate={{
-                y: [null, -1000],
-                opacity: [null, 0],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          ))}
-        </div>
+        <StarBackground />
         <motion.div
           className="max-w-6xl mx-auto px-4 py-20 text-center relative z-10"
           style={{ y }}
@@ -351,6 +374,8 @@ const Portfolio = () => {
                         stiffness: 400,
                         damping: 17,
                       }}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Github size={20} className="mr-1" /> Code
                     </motion.a>
@@ -363,6 +388,8 @@ const Portfolio = () => {
                         stiffness: 400,
                         damping: 17,
                       }}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <ExternalLink size={20} className="mr-1" /> Live
                     </motion.a>
@@ -404,7 +431,7 @@ const Portfolio = () => {
               </div>
               <div className="flex items-start space-x-4">
                 <div className="bg-gray-800 p-3 rounded-lg">
-                <Briefcase className="w-6 h-6 text-white" />
+                  <Briefcase className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Experience</h3>
