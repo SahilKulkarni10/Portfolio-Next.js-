@@ -1,16 +1,42 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown } from "lucide-react";
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { User, Briefcase, GraduationCap, Code, Send, Phone, MapPin } from "lucide-react";
-import emailjs from '@emailjs/browser';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  Menu,
+  X,
+  ChevronDown,
+} from "lucide-react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
+import {
+  User,
+  Briefcase,
+  GraduationCap,
+  Code,
+  Send,
+  Phone,
+  MapPin,
+} from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState("");
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const { scrollYProgress } = useScroll();
 
@@ -23,13 +49,13 @@ const Portfolio = () => {
   useEffect(() => {
     setDimensions({
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight,
     });
 
     const handleResize = () => {
       setDimensions({
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
       });
     };
 
@@ -48,32 +74,32 @@ const Portfolio = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setStatus('');
+    setStatus("");
     try {
       await emailjs.send(
-        'service_zz47vzo',
-        'template_5suhiqe',
+        "service_zz47vzo",
+        "template_5suhiqe",
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
         },
-        '6jjVwrK_vvRunMlB3'
+        "6jjVwrK_vvRunMlB3"
       );
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error('Email error:', error);
-      setStatus('error');
+      console.error("Email error:", error);
+      setStatus("error");
     } finally {
       setLoading(false);
     }
@@ -89,8 +115,9 @@ const Portfolio = () => {
       tags: ["Next.js", "AI/ML", "Tailwind CSS"],
       github: "https://github.com/SahilKulkarni10/ResumeRefine",
       live: "https://resume-refine-lilac.vercel.app",
-      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000",
-      color: "from-blue-500 to-purple-500"
+      image:
+        "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000",
+      color: "from-blue-500 to-purple-500",
     },
     {
       title: "CampusConnect",
@@ -98,18 +125,21 @@ const Portfolio = () => {
       tags: ["React", "Node.js", "MongoDB"],
       github: "https://github.com/SahilKulkarni10/campusclient",
       live: "https://campusclient.vercel.app",
-      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000",
-      color: "from-green-500 to-teal-500"
+      image:
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000",
+      color: "from-green-500 to-teal-500",
     },
+    
     {
-      title: "Robot monitoring system",
-      description: "Real-time monitoring system for industrial robots",
-      tags: ["React", "Node.js"],
-      github: "https://github.com/SahilKulkarni10/robot_monitoring",
-      live: "https://robot-monitoring.vercel.app",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1000",
-      color: "from-orange-500 to-red-500"
-    }
+      title: "ForestFire.ai",
+      description: "AI-based forest fire detection system",
+      tags: ["Next.js", "AI/ML", "Tailwind CSS"],
+      github: "https://github.com/SahilKulkarni10/ForestFire.ai",
+      live: "https://forest-fire-ai.vercel.app",
+      image:
+        "https://images.unsplash.com/photo-1600181957881-b96c42bc6fab?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      color: "from-orange-500 to-red-500",
+    },
   ];
 
   const StarBackground = () => {
@@ -191,12 +221,12 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <a href="#">
-            <motion.h1
-              className="text-2xl font-bold"
-              whileHover={{ scale: 1.05 }}
-            >
-              Sahil Kulkarni
-            </motion.h1>
+              <motion.h1
+                className="text-2xl font-bold"
+                whileHover={{ scale: 1.05 }}
+              >
+                Sahil Kulkarni
+              </motion.h1>
             </a>
             <div className="hidden md:flex space-x-8">
               {["Projects", "About", "Contact"].map((item) => (
@@ -286,7 +316,10 @@ const Portfolio = () => {
           >
             {[
               { Icon: Github, href: "https://github.com/SahilKulkarni10" },
-              { Icon: Linkedin, href: "https://www.linkedin.com/in/sahil-kulkarni-181ab1246/" },
+              {
+                Icon: Linkedin,
+                href: "https://www.linkedin.com/in/sahil-kulkarni-181ab1246/",
+              },
               { Icon: Mail, href: "mailto:kulkarnisahil882@gmail.com" },
             ].map(({ Icon, href }, index) => (
               <motion.a
@@ -423,9 +456,9 @@ const Portfolio = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Background</h3>
                   <p className="text-gray-400">
-                    Web developer and AI/ML enthusiast with a passion for building 
-                    innovative applications. Experienced in creating dynamic systems 
-                    using cutting-edge technologies.
+                    Web developer and AI/ML enthusiast with a passion for
+                    building innovative applications. Experienced in creating
+                    dynamic systems using cutting-edge technologies.
                   </p>
                 </div>
               </div>
@@ -436,9 +469,9 @@ const Portfolio = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Experience</h3>
                   <p className="text-gray-400">
-                    Successfully completed projects in AI/ML, web development, 
-                    and IoT, including credit card fraud detection, SAR image 
-                    colorization, and a resume filtration system. Actively 
+                    Successfully completed projects in AI/ML, web development,
+                    and IoT, including credit card fraud detection, SAR image
+                    colorization, and a resume filtration system. Actively
                     contributing to hackathon and institution-focused projects.
                   </p>
                 </div>
@@ -452,9 +485,9 @@ const Portfolio = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Education</h3>
                   <p className="text-gray-400">
-                    Pursuing a degree in Computer Science with a focus on Machine 
-                    Learning and Artificial Intelligence, developing strong technical 
-                    and problem-solving skills.
+                    Pursuing a degree in Computer Science with a focus on
+                    Machine Learning and Artificial Intelligence, developing
+                    strong technical and problem-solving skills.
                   </p>
                 </div>
               </div>
@@ -465,7 +498,7 @@ const Portfolio = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Skills</h3>
                   <p className="text-gray-400">
-                    React, Node.js, Python, TensorFlow, Flask, MongoDB, MySQL, 
+                    React, Node.js, Python, TensorFlow, Flask, MongoDB, MySQL,
                     Next.js, TypeScript, and API development.
                   </p>
                 </div>
@@ -555,21 +588,27 @@ const Portfolio = () => {
                     required
                   />
                 </div>
-                {status === 'success' && (
-                  <div className="text-green-500">Message sent successfully!</div>
+                {status === "success" && (
+                  <div className="text-green-500">
+                    Message sent successfully!
+                  </div>
                 )}
-                {status === 'error' && (
-                  <div className="text-red-500">Failed to send message. Please try again.</div>
+                {status === "error" && (
+                  <div className="text-red-500">
+                    Failed to send message. Please try again.
+                  </div>
                 )}
                 <motion.button
                   type="submit"
                   disabled={loading}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`w-full py-3 px-6 bg-white text-black font-semibold rounded-lg flex items-center justify-center space-x-2 hover:bg-gray-200 transition-colors ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  className={`w-full py-3 px-6 bg-white text-black font-semibold rounded-lg flex items-center justify-center space-x-2 hover:bg-gray-200 transition-colors ${
+                    loading ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 >
                   <Send className="w-5 h-5" />
-                  <span>{loading ? 'Sending...' : 'Send Message'}</span>
+                  <span>{loading ? "Sending..." : "Send Message"}</span>
                 </motion.button>
               </form>
             </motion.div>
