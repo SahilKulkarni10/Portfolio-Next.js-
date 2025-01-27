@@ -27,6 +27,10 @@ import {
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
+/*
+Updated the Portfolio component to use the new lucide icons and framer-motion animations.
+*/
+
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
