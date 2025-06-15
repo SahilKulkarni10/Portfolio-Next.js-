@@ -118,7 +118,7 @@ const Portfolio = () => {
       description: "AI-powered resume analysis and improvement platform",
       tags: ["Next.js", "AI/ML", "Tailwind CSS"],
       github: "https://github.com/SahilKulkarni10/ResumeRefine",
-      live: "https://resume-refine-lilac.vercel.app",
+      live: "https://resumerefine.vercel.app",
       image:
         "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000",
       color: "from-blue-500 to-purple-500",
