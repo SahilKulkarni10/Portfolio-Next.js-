@@ -144,6 +144,15 @@ const Portfolio = () => {
         "https://images.unsplash.com/photo-1600181957881-b96c42bc6fab?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       color: "from-orange-500 to-red-500",
     },
+    {
+      title:"MetaConnect",
+      description: "Real-time collaborative coding platform for developers",
+      tags: ["ReactNative", "Node.js", "Socket.io"],
+      github: "https://github.com/SahilKulkarni10/MetaConnect",
+      image:
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop",
+      color: "from-purple-500 to-pink-500",
+    }
   ];
 
   const StarBackground = () => {
